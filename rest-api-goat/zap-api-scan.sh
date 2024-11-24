@@ -35,10 +35,10 @@ echo "target port: ${server_port}"
 
 # create folders
 test -d "${report_folder}" || mkdir -p "${report_folder}"
-sudo chmod 777 "${report_folder}"
+chmod 777 "${report_folder}"
 
 # run scanner
-python3 -m zap-api-scan.py \
+python3 -m zap-api-scan \
     -t "${target_api_definition}" \
     -f openapi \
     -d \
