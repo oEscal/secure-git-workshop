@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: sonar-project.properties
+  checksum: 7d155a3e1030d8318277e96c51a93552e4cc06c6147d12d8db2ff6d6e3fe865a
+version: ""
