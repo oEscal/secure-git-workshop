@@ -25,7 +25,6 @@ env:
   DELETE_FLAG: "true"
   TARGET_API_DEF: "py-web/openapi.json"
   API_REPORT_FILE: "api_report.json"
-  CONTAINER_NAME: "zap2docker_scan"
   APP_DIR: "rest-api-goat"
   REPORT_FOLDER: "reports"
 
@@ -60,7 +59,6 @@ jobs:
         then
           docker-compose rm -f web
           docker-compose rm -f py-web
-          docker-compose rm -f zap2docker
         fi
         popd
 
@@ -90,11 +88,3 @@ jobs:
         format: openapi
         target: https://raw.githubusercontent.com/oEscal/secure-git-workshop/refs/heads/step5/rest-api-goat/py-web/openapi.json
         cmd_options: -z "-config replacer.full_list(0).description=content" -z "-config replacer.full_list(0).enabled=true" -z "-config replacer.full_list(0).matchtype=REQ_HEADER" -z "-config replacer.full_list(0).matchstr=Content-Type" -z "-config replacer.full_list(0).regex=false" -z "-config replacer.full_list(0).replacement='application/octet-stream'" -z "-config replacer.full_list(0).description=accept" -z "-config replacer.full_list(0).enabled=true" -z "-config replacer.full_list(0).matchtype=REQ_HEADER" -z "-config replacer.full_list(0).matchstr=Accept" -z "-config replacer.full_list(0).regex=false" -z "-config replacer.full_list(0).replacement='application\/json'" -z "-config replacer.full_list(0).description=auth1" -z "-config replacer.full_list(0).enabled=true" -z "-config replacer.full_list(0).matchtype=REQ_HEADER" -z "-config replacer.full_list(0).matchstr=X-API-Token" -z "-config replacer.full_list(0).regex=false" -z "-config replacer.full_list(0).replacement=${api_key}"
-      # env:
-      #   GOAT_API_TOKEN: ${{ secrets.GOAT_API_TOKEN }}
-      # run: |-
-      #   pushd "${{env.APP_DIR}}"
-      #   test -d "${REPORT_FOLDER}" || mkdir -p "${REPORT_FOLDER}"
-      #   docker-compose run --name "${{env.CONTAINER_NAME}}" -d -e ENV="${{env.ENV}}" -e REPORT_FILE="${{env.API_REPORT_FILE}}" -e TARGET="${{env.API_TARGET}}" zap2docker
-      #   docker logs -f "${{env.CONTAINER_NAME}}"
-      #   popd
