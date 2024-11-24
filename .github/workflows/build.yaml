@@ -1,20 +1,19 @@
-name: CI - Static analysis
+name: Build
 on:
   push:
     branches:
-      - step4
+      - master
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
-  sast:
-    name: SonarCloud Prepare
+  sonarcloud:
+    name: SonarQube Cloud
     runs-on: ubuntu-latest
     steps:
-      - name: GitHub checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: SonarCloud Scan
+      - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
