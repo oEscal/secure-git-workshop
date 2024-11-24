@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: .github/workflows/api-scanning.yml
+  checksum: 5b39a6a9ff9502a977193ffbb89d54513f903b55d8d9829d05e420ff9ba993ad
+version: ""
