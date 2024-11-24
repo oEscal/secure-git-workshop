@@ -65,3 +65,4 @@ zap-api-scan.py \
     -z "-config replacer.full_list(0).replacement=${api_key}"
 
 echo "result status: $?"
+
