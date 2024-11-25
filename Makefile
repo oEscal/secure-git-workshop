@@ -19,13 +19,12 @@ talisman_setup:
 secret_detection: audit_trufflehog
 
 audit_trufflehog:
+	@echo "Running trufflehog"
 	docker run \
 		-t \
+		-it \
 		--rm \
-		-v $(PWD):/target dxa4481/trufflehog \
-		--max_depth=20 \
+		-v $(PWD):/target \
+		trufflesecurity/trufflehog:latest filesystem /target \
 		--json \
-		--regex \
-		--entropy=False \
-		--branch=$(BRANCH) \
-		file:///target | jq -C
+		| jq -C
