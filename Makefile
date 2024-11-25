@@ -5,9 +5,9 @@ BRANCH ?= step2
 talisman_setup:
 	@echo configure
 	if ! test -d bin; then mkdir -p bin/; fi
-	curl https://thoughtworks.github.io/talisman/install.sh > bin/install-talisman.sh
+	curl https://raw.githubusercontent.com/thoughtworks/talisman/main/install.sh > bin/install-talisman.sh
 	chmod +x bin/install-talisman.sh
-	
+
 	@echo cleanup
 	if test -f .git/hooks/pre-commit; then rm -i .git/hooks/pre-commit; fi
 	if test -f .git/hooks/commit-msg; then rm -i .git/hooks/commit-msg; fi
